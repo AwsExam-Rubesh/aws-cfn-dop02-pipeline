@@ -17,13 +17,13 @@ Mappings:
   EnvironmentConfig:
 
     DEV:
-      Message: "This EC2 instance belongs to DEV"
+      Message: "VERSION 2 - DEV DEPLOYMENT"
 
     STAGING:
-      Message: "This EC2 instance belongs to STAGING"
+      Message: "VERSION 2 - STAGE DEPLOYMENT"
 
     PROD:
-      Message: "This EC2 instance belongs to PROD"
+      Message: "VERSION 2 - PROD DEPLOYMENT"
 
 Resources:
 
