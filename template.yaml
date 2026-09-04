@@ -17,13 +17,13 @@ Mappings:
   EnvironmentConfig:
 
     DEV:
-      Message: "VERSION 2 - DEV DEPLOYMENT"
+      Message: "VERSION 3 - DEV DEPLOYMENT"
 
     STAGING:
-      Message: "VERSION 2 - STAGE DEPLOYMENT"
+      Message: "VERSION 3 - STAGE DEPLOYMENT"
 
     PROD:
-      Message: "VERSION 2 - PROD DEPLOYMENT"
+      Message: "VERSION 3 - PROD DEPLOYMENT"
 
 Resources:
 
