@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: DOP-C02 Multi-Environment CloudFormation Pipeline Lab
+
+Parameters:
+
+  Environment:
+    Type: String
+    Description: Deployment environment
+    AllowedValues:
+      - DEV
+      - STAGING
+      - PROD
+
+Mappings:
+
+  EnvironmentConfig:
+
+    DEV:
+      Message: "This EC2 instance belongs to DEV"
+
+    STAGING:
+      Message: "This EC2 instance belongs to STAGING"
+
+    PROD:
+      Message: "This EC2 instance belongs to PROD"
+
+Resources:
+
+  DemoInstance:
+    Type: AWS::EC2::Instance
+
+    Properties:
+
+      ImageId: ami-090d68841c2a28756
+
+      InstanceType: t3.micro
+
+      Tags:
+
+        - Key: Name
+          Value: !Sub "DOP-${Environment}"
+
+        - Key: Environment
+          Value: !Ref Environment
+
+      UserData:
+        Fn::Base64:
+          !Sub
+            - |
+              #!/bin/bash
+
+              echo "${Environment}" > /tmp/environment.txt
+              echo "${Message}" > /tmp/message.txt
+
+              echo "Environment: ${Environment}" > /var/www/environment.txt
+              echo "Message: ${Message}" >> /var/www/environment.txt
+            - Message: !FindInMap
+                - EnvironmentConfig
+                - !Ref Environment
+                - Message
